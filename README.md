@@ -49,11 +49,24 @@ cd ~/Developer/ai-models-registry
 python3 doctor.py
 ```
 
+## Neues KI-Projekt starten
+
+Statt händisch `mkdir`, `git init`, `gh repo create` etc. — einfach:
+
+```bash
+~/Developer/ai-models-registry/new-ai-project.sh mein-projekt
+```
+
+Das Script erstellt `~/Developer/mein-projekt/` mit `CLAUDE.md`, `README.md`,
+`.gitignore`, macht den ersten Commit und legt direkt ein GitHub-Repo an
+(default public, mit `--private` private, mit `--no-github` ohne).
+
 ## Dateien hier drin
 
 | Datei | Zweck |
 |---|---|
 | `registry.yaml` | Single Source of Truth: alle Projekte + ihre Modelle |
 | `doctor.py` | Scannt Mac, vergleicht gegen `registry.yaml`, gibt Report aus |
+| `new-ai-project.sh` | Startet neues KI-Projekt mit sauberem Setup |
 | `CLAUDE.md` | Briefing für Claude Code — beantwortet Fragen, navigiert das System |
 | `README.md` | Diese Datei |

@@ -109,6 +109,19 @@ gh repo clone mantheykeanu/ai-models-registry ~/Developer/ai-models-registry
 
 Voraussetzung: `gh auth login` ist einmal gelaufen.
 
+### "Wie starte ich ein neues KI-Projekt?"
+
+```bash
+~/Developer/ai-models-registry/new-ai-project.sh <projekt-name>
+```
+
+Default: legt `~/Developer/<projekt-name>/` an, schreibt CLAUDE.md / README.md /
+.gitignore-Templates rein, macht Initial Commit, erstellt **public** GitHub-Repo
+und pusht. Flags: `--private`, `--no-github`.
+
+Die generierte CLAUDE.md verweist automatisch auf diese Registry — neue Projekte
+sind also sofort an die zentrale Modell-Verwaltung angeschlossen.
+
 ### "Wie ändere ich Storage-Pfade?"
 
 In `registry.yaml` unter `storage:` einfach den Pfad anpassen. Der Doctor liest
