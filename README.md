@@ -61,6 +61,21 @@ Das Script erstellt `~/Developer/mein-projekt/` mit `CLAUDE.md`, `README.md`,
 `.gitignore`, macht den ersten Commit und legt direkt ein GitHub-Repo an
 (default public, mit `--private` private, mit `--no-github` ohne).
 
+## Briefing für Claude (in beliebigen Chat droppen)
+
+[`keanu-briefing.md`](keanu-briefing.md) ist eine selbst-enthaltene Markdown-Datei,
+die du in jeden Claude-Chat pasten oder hochladen kannst — egal ob Claude Code,
+Claude Desktop oder Claude.ai im Browser. Sie sagt Claude in einem Schwung wer du
+bist, wie du arbeitest, was auf dem Mac liegt und welche Repos es gibt.
+
+**Direkt-URL (raw):**
+https://raw.githubusercontent.com/mantheykeanu/ai-models-registry/main/keanu-briefing.md
+
+**Im Terminal in die Zwischenablage kopieren:**
+```bash
+curl -s https://raw.githubusercontent.com/mantheykeanu/ai-models-registry/main/keanu-briefing.md | pbcopy
+```
+
 ## Dateien hier drin
 
 | Datei | Zweck |
@@ -68,5 +83,6 @@ Das Script erstellt `~/Developer/mein-projekt/` mit `CLAUDE.md`, `README.md`,
 | `registry.yaml` | Single Source of Truth: alle Projekte + ihre Modelle |
 | `doctor.py` | Scannt Mac, vergleicht gegen `registry.yaml`, gibt Report aus |
 | `new-ai-project.sh` | Startet neues KI-Projekt mit sauberem Setup |
-| `CLAUDE.md` | Briefing für Claude Code — beantwortet Fragen, navigiert das System |
+| `keanu-briefing.md` | Portables Briefing — in jeden Claude-Chat droppen |
+| `CLAUDE.md` | Briefing nur für Claude Code (auto-load in diesem Ordner) |
 | `README.md` | Diese Datei |
