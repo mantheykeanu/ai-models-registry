@@ -1,0 +1,65 @@
+# AI Models Registry — Single Source of Truth
+#
+# Was ist hier? Eine Liste aller KI-Modelle, die auf diesem Mac liegen,
+# zusammen mit der Info, welches Projekt sie braucht und wofür.
+#
+# Wenn du ein Modell laden willst:
+#   1. Lade es ganz normal über sein Framework (ollama pull, huggingface-cli, etc.)
+#   2. Trage es hier unter dem zuständigen Projekt ein
+#   3. Lauf `python3 doctor.py` zum Check
+#
+# Wenn ein Projekt wegfällt: Block hier löschen → doctor zeigt die Modelle als
+# Orphans → du bekommst die exakten Lösch-Befehle vorgeschlagen.
+
+# -----------------------------------------------------------------------------
+# Storage-Pfade — wo die Frameworks ihre Modelle ablegen
+# -----------------------------------------------------------------------------
+storage:
+  ollama: ~/.ollama/models
+  huggingface_cache: ~/.cache/huggingface/hub
+  voiceink_whisper: ~/Library/Application Support/com.prakashjoshipax.VoiceInk/WhisperModels
+  # Eigene Pfade (z.B. huggingface-cli mit --local-dir):
+  custom:
+    voiceink_hf_download: ~/voiceink-models
+
+# -----------------------------------------------------------------------------
+# Projekte — was nutzt welche Modelle
+# -----------------------------------------------------------------------------
+projects:
+
+  voiceink:
+    description: "Lokales Diktat-Setup (Whisper-Transkription + Ollama-Cleanup)"
+    repo: https://github.com/mantheykeanu/voiceink-config
+    local_path: ~/Developer/voiceink-config
+    active: true
+    models:
+      - name: gemma3:12b-it-qat
+        framework: ollama
+        purpose: "Basis-LLM für custom 'dictation'-Modell — Cleanup von Diktat-Transkripten"
+        required: true
+      - name: dictation:latest
+        framework: ollama
+        purpose: "Custom Modelfile von gemma3:12b-it-qat mit Stops + Sampler-Tuning"
+        note: "Teilt Modell-Blob mit gemma3:12b-it-qat — kostet on-disk fast nix extra"
+        required: true
+      - name: ggml-large-v3-turbo-q5_0.bin
+        framework: whisper.cpp
+        path: ~/Library/Application Support/com.prakashjoshipax.VoiceInk/WhisperModels/ggml-large-v3-turbo-q5_0.bin
+        purpose: "Deutsches Whisper-Modell (primeline-turbo-DE), in VoiceInks Erwartungs-Pfad umbenannt"
+        required: true
+      - name: ggml-large-v3-turbo-q5_0.bin.generic-backup
+        framework: whisper.cpp
+        path: ~/Library/Application Support/com.prakashjoshipax.VoiceInk/WhisperModels/ggml-large-v3-turbo-q5_0.bin.generic-backup
+        purpose: "Original-OpenAI-Whisper als Fallback, falls man zurück zum englischen Modell will"
+        required: false
+
+# -----------------------------------------------------------------------------
+# Bekannte Orphans, die noch nicht weggeräumt wurden (optional dokumentieren)
+# -----------------------------------------------------------------------------
+# Wenn du Modelle nicht mehr brauchst, einfach den Projekt-Eintrag entfernen.
+# Der doctor erkennt sie dann als Orphans und zeigt dir die Lösch-Befehle.
+known_orphans_acknowledged: []
+  # Beispiel:
+  # - name: qwen2.5:7b
+  #   reason: "Frühes Experiment, durch dictation-Modell ersetzt"
+  #   safe_to_delete: true
